@@ -42,13 +42,19 @@ class UserFactory
         $user->setProfileState($userData['profilestate']);
         $user->setProfileName($userData['personaname']);
         $user->setLastLogOff($userData['lastlogoff']);
-        $user->setCommentPermission($userData['commentpermission']);
+
+        if (isset($userData['commentpermission'])) {
+            $user->setCommentPermission($userData['commentpermission']);
+        }
+
         $user->setProfileUrl($userData['profileurl']);
         $user->setAvatar($userData['avatarfull']);
         $user->setPersonaState($userData['personastate']);
-        $user->setPrimaryClanId(
-            isset($userData['primaryclanid']) ? $userData['primaryclanid'] : null
-        );
+
+        if (isset($userData['primaryclanid'])) {
+            $user->setPrimaryClanId((int)$userData['primaryclanid']);
+        };
+
         $user->setJoinDate(
             isset($userData['timecreated']) ? $userData['timecreated'] : null
         );

@@ -12,12 +12,12 @@ interface SteamUserInterface
     /**
      * @return int
      */
-    public function getSteamId(): int;
+    public function getSteamId(): string;
 
     /**
-     * @param int $steamId
+     * @param string $steamId
      */
-    public function setSteamId(int $steamId);
+    public function setSteamId(string $steamId);
 
     /**
      * @return int

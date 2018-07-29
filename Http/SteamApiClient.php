@@ -2,6 +2,7 @@
 
 namespace Knojector\SteamAuthenticationBundle\Http;
 
+use function GuzzleHttp\Psr7\copy_to_string;
 use Knojector\SteamAuthenticationBundle\Exception\InvalidApiResponseException;
 use GuzzleHttp\Client;
 
@@ -32,13 +33,13 @@ class SteamApiClient
     }
 
     /**
-     * @param int $steamId
+     * @param string $steamId
      *
      * @return array
      *
      * @throws InvalidApiResponseException
      */
-    public function loadProfile(int $steamId)
+    public function loadProfile(string $steamId)
     {
         $url = sprintf('%s/ISteamUser/GetPlayerSummaries/v0002/?key=%s&steamids=%s', self::STEAM_API, $this->apiKey, $steamId);
 

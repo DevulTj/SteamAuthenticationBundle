@@ -26,7 +26,7 @@ class SteamUserToken implements TokenInterface
     private $user;
 
     /**
-     * @var int
+     * @var string
      */
     private $username;
 
@@ -79,9 +79,9 @@ class SteamUserToken implements TokenInterface
     }
 
     /**
-     * @param int $username
+     * @param string $username
      */
-    public function setUsername(int $username)
+    public function setUsername(string $username)
     {
         $this->username = $username;
     }

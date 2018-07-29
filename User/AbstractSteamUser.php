@@ -105,7 +105,7 @@ abstract class AbstractSteamUser implements SteamUserInterface, UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getSteamId(): int
+    public function getSteamId(): string
     {
         return $this->steamId;
     }
@@ -113,7 +113,7 @@ abstract class AbstractSteamUser implements SteamUserInterface, UserInterface
     /**
      * {@inheritdoc}
      */
-    public function setSteamId(int $steamId)
+    public function setSteamId(string $steamId)
     {
         $this->steamId = $steamId;
     }
@@ -355,13 +355,19 @@ abstract class AbstractSteamUser implements SteamUserInterface, UserInterface
         $this->setProfileState($userData['profilestate']);
         $this->setProfileName($userData['personaname']);
         $this->setLastLogOff($userData['lastlogoff']);
-        $this->setCommentPermission($userData['commentpermission']);
+
+        if (isset($userData['commentpermission'])) {
+            $this->setCommentPermission($userData['commentpermission']);
+        };
+
         $this->setProfileUrl($userData['profileurl']);
         $this->setAvatar($userData['avatarfull']);
         $this->setPersonaState($userData['personastate']);
-        $this->setPrimaryClanId(
-            isset($userData['primaryclanid']) ? $userData['primaryclanid'] : null
-        );
+
+        if (isset($userData['primaryclanid'])) {
+            $this->setPrimaryClanId((int)$userData['primaryclanid']);
+        };
+
         $this->setCountryCode(
             isset($userData['loccountrycode']) ? $userData['loccountrycode'] : null
         );
